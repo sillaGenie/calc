@@ -4,56 +4,48 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:calc"
+        xmlns:vm="clr-namespace:calc.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="400">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Window.Resources>
-        <Style x:Key="btnStyleGrey">
+        <Style TargetType="Button">
             <Setter Property="Button.Background" Value="#FFB3C5D4"/>
             <Setter Property="Button.FontSize" Value="20"/>
             <Setter Property="Button.BorderBrush" Value="#FF1232E4"/>
         </Style>
-        <Style x:Key="btnStyleBlue">
-            <Setter Property="Button.Background" Value="#FF8ECFD4"/>
-            <Setter Property="Button.FontSize" Value="20"/>
-            <Setter Property="Button.BorderBrush" Value="#FF1232E4"/>
+        <Style TargetType="TextBox">
+            <Setter Property="Button.Background" Value="#FFB3C5D4"/>
+            <Setter Property="Button.FontSize" Value="15"/>
+
         </Style>
     </Window.Resources>
-   
-        <Grid x:Name="grid" Background="#FF889291">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.3*"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.25*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox  Grid.Column="0"  Grid.ColumnSpan="1" Text="Ответ:"/>
+        <TextBox  Grid.Column="1"  Grid.ColumnSpan="3" Text="{Binding Path=Number3}" />
 
-            <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <UniformGrid Rows="6" Columns="4" Grid.Row="2" Margin="10">
-            <Button  Content="%"  Style="{StaticResource btnStyleGrey}"/>
-            <Button Content="CE" Style="{StaticResource btnStyleGrey}"/>
-            <Button  Content="C" Style="{StaticResource btnStyleGrey}" Click="Button_Click_16"/>
-            <Button  Content="⇐" Style="{StaticResource btnStyleGrey}" Click="Button_Click_17"/>
-            <Button  Content="1/x" Style="{StaticResource btnStyleGrey}"/>
-            <Button  Content="x²" Style="{StaticResource btnStyleGrey}"/>
-            <Button  Content="√x" Style="{StaticResource btnStyleGrey}"/>
-            <Button  Content="/" Style="{StaticResource btnStyleGrey}" Click="Button_Click_15"/>
-            <Button  Content="7" Style="{StaticResource btnStyleBlue}" Click="Button_Click_6"/>
-            <Button  Content="8" Style="{StaticResource btnStyleBlue}" Click="Button_Click_7"/>
-            <Button  Content="9" Style="{StaticResource btnStyleBlue}" Click="Button_Click_8"/>
-            <Button  Content="x" Style="{StaticResource btnStyleBlue}" Click="Button_Click_14"/>
-            <Button  Content="4" Style="{StaticResource btnStyleBlue}" Click="Button_Click_3"/>
-            <Button  Content="5" Style="{StaticResource btnStyleBlue}" Click="Button_Click_4"/>
-            <Button  Content="6" Style="{StaticResource btnStyleBlue}" Click="Button_Click_5"/>
-            <Button  Content="-" Style="{StaticResource btnStyleBlue}" Click="Button_Click_13"/>
-            <Button  Content="1" Style="{StaticResource btnStyleBlue}" Click="Button_Click"/>
-            <Button  Content="2" Style="{StaticResource btnStyleBlue}" Click="Button_Click_1"/>
-            <Button  Content="3" Style="{StaticResource btnStyleBlue}" Click="Button_Click_2"/>
-            <Button  Content="+" Style="{StaticResource btnStyleBlue}" Click="Button_Click_11" />
-            <Button  Content="+/-" Style="{StaticResource btnStyleBlue}" Click="Button_Click_18"/>
-            <Button  Content="0" Style="{StaticResource btnStyleBlue}" Click="Button_Click_9"/>
-            <Button  Content="," Style="{StaticResource btnStyleBlue}" Click="Button_Click_10"/>
-            <Button  Content="=" Style="{StaticResource btnStyleBlue}" Click="Button_Click_12"/>
-            </UniformGrid>
-            <Grid Grid.Row="0" Background="Aqua" Margin="10">
-        <TextBox  Grid.Column="0" x:Name="txtBox" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Background="{x:Null}"/>
-        <Label   Grid.Row="1" Grid.Column="0" x:Name="lbl"  FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10" Background="{x:Null}"/>
-        </Grid>
+        <Button Grid.Column="0" Grid.Row="1" Content="+" Command="{Binding Path=AddCommand}"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="-" Command="{Binding Path=SubCommand}"/>
+        <Button Grid.Column="2" Grid.Row="1" Content="*" Command="{Binding Path=MultCommand}"/>
+        <Button Grid.Column="3" Grid.Row="1" Content="/" Command="{Binding Path=DivCommand}"/>
+        <TextBox  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="Первое число:"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Path=Number1}"/>
+        <TextBox  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="Второе число:"/>
+        <TextBox  Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Path=Number2}"/>
+
     </Grid>
 </Window>
